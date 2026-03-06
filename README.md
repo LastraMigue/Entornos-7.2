@@ -13,11 +13,10 @@ graph LR
 %% Actores
 Usuario((Usuario))
 
-%% Límite del Sistema
+%% Casos de Uso
 subgraph "El Sistema de Iluminación"
-   
-    CU1([Encender luces])
-    CU2([Apagar luces])
+CU1([Encender luces])
+CU2([Apagar luces])
 end
 
 %% Relaciones actor-casos de uso
@@ -50,14 +49,52 @@ CU1([Comprar Producto])
 CU2([Aplicar Cupón Descuento])
 CU3([Gestionar Stock])
 
-%% Relación de Extensión
+%% Relación Extend
 CU2 -.->|&lt;&lt;extend&gt;&gt;| CU1
 end
 
-%% Relaciones de los Actores
+%% Relaciones actor-casos de uso
 Cliente --- CU1
 Admin --- CU3
 ```
 
 ---
 
+## Ej 3: Complejo - Plataforma de Streaming (Estilo Netflix)
+**Contexto:** Un sistema con dependencias obligatorias y múltiples actores, incluyendo sistemas externos.
+
+* **Actores: Espectador**, **Editor de Contenido** y un sistema externo llamado **Pasarela de Pagos**.
+* **Funcionalidades y Relaciones:**
+   * El **Espectador** puede "Reproducir Película". Para ello, el sistema debe "Validar Suscripción" obligatoriamente cada vez.
+   * Al "Reproducir Película", el espectador tiene la opción de "Activar Subtítulos".
+   * El **Editor de Contenido** puede "Subir Nuevo Video".
+   * El sistema debe permitir "Renovar Suscripción", proceso que requiere la comunicación con la **Pasarela de Pagos**.
+* **Reto:** Gestionar el límite del sistema, actores externos y la relación de inclusión (<<include>>).
+
+```mermaid
+graph LR
+
+%% Actores
+Espectador(("Espectador"))
+Editor(("Editor de Contenido"))
+Pasarela(("Pasarela de Pagos"))
+
+%% Casos de Uso
+subgraph Plataforma de Streaming
+UC1([Reproducir Película])
+UC2([Validar Suscripción])
+UC3([Activar Subtítulos])
+UC4([Subir Nuevo Video])
+UC5([Renovar Suscripción])
+end
+
+%% Relaciones Include y Extend
+UC1 -.->|&lt;&lt;include&gt;&gt;| UC2
+UC3 -.->|&lt;&lt;extend&gt;&gt;| UC1
+
+%% Relaciones actor-casos de uso
+Espectador --- UC1
+Espectador --- UC5
+Editor --- UC4
+Pasarela --- UC5
+```
