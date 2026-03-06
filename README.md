@@ -58,6 +58,8 @@ Cliente --- CU1
 Admin --- CU3
 ```
 
+* **&lt;&lt;extend&gt;&gt;:** Esta relacion se da porque **Aplicar Cupón Descuento** es un comportamiento opcional de **Comprar Producto**
+
 ---
 
 ## Ej 3: Complejo - Plataforma de Streaming (Estilo Netflix)
@@ -98,3 +100,7 @@ Espectador --- UC5
 Editor --- UC4
 Pasarela --- UC5
 ```
+
+* **&lt;&lt;extend&gt;&gt;:** Esta relacion se da porque **Activar Subtítulos** es un comportamiento opcional de **Reproducir Película**
+
+* **&lt;&lt;include&gt;&gt;:** Esta relacion se da porque **Validar Suscripción** es un comportamiento obligatorio de **Reproducir Película**
