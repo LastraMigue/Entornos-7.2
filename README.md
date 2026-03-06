@@ -27,3 +27,37 @@ Usuario --- CU2
 
 ---
 
+## Ej 2: Gestión de Tienda Online
+**Contexto:** Un sistema de comercio electrónico donde interactúan diferentes perfiles.
+
+* **Actores: Cliente** y **Administrador**.
+* **Funcionalidades:**
+   * El **Cliente** puede "Comprar Producto".
+   * El **Administrador** puede "Gestionar Stock".
+* **Relaciones Especiales:** Al "Comprar Producto", el sistema permite de forma opcional "Aplicar Cupón Descuento" (si el cliente tiene uno).
+* **Reto:** Aplicar correctamente la relación de extensión (<<extend>>).
+
+```mermaid
+graph LR
+
+%% Actores
+Cliente((Cliente))
+Admin((Administrador))
+
+%% Casos de Uso
+subgraph "Gestión de Tienda Online"
+CU1([Comprar Producto])
+CU2([Aplicar Cupón Descuento])
+CU3([Gestionar Stock])
+
+%% Relación de Extensión
+CU2 -.->|&lt;&lt;extend&gt;&gt;| CU1
+end
+
+%% Relaciones de los Actores
+Cliente --- CU1
+Admin --- CU3
+```
+
+---
+
